@@ -6,11 +6,11 @@ import java.lang.Exception;
 public class LoginForm extends JFrame implements ActionListener{
     JLabel login_register;
     JPanel login_window,register_window;
-    JLabel user_id,password;
-    JTextField password_input;
+    JLabel role,password,user_id;
+    JTextField password_input,user_id_input;
     GridBagConstraints Gridwidth;
     JButton login_button,register_button;
-    JComboBox<String> user_id_input;
+    JComboBox<String> role_select;
 
     LoginForm() 
     {
@@ -31,10 +31,12 @@ public class LoginForm extends JFrame implements ActionListener{
         login_window.setBounds(0, 0, 400, 400);
         
 
-        String Options[] = { " ","Admin", "Site Admin", "Supplier", "Customer" };
-        user_id_input = new JComboBox<String>(Options);
+        String Options[] = {"","Admin", "Site Admin", "Supplier", "Customer" };
+        role_select = new JComboBox<String>(Options);
 
 
+        role = new JLabel("Role:");
+        role.setFont(new Font("SansSerif", Font.BOLD, 15));
         user_id = new JLabel("User ID:");
         user_id.setFont(new Font("SansSerif", Font.BOLD, 15));
         password = new JLabel("Password:");
@@ -42,23 +44,28 @@ public class LoginForm extends JFrame implements ActionListener{
         login_register = new JLabel("Login");
         login_register.setFont(new Font("Serif",Font.BOLD,25));
 
+        user_id_input = new JTextField();
         password_input = new JTextField();
 
-        user_id.setBounds(30,120,100,30);
-        password.setBounds(30,160,100,30);
+        role.setBounds(30,120,100,30);
+        user_id.setBounds(30,160,100,30);
+        password.setBounds(30,200,100,30);
 
-        user_id_input.setBounds(150,120,200,30);
-        password_input.setBounds(150,160,200,30);
+        role_select.setBounds(150,120,200,30);
+        user_id_input.setBounds(150,160,200,30);
+        password_input.setBounds(150,200,200,30);
 
-        login_button.setBounds(140,220,100,30);
-        register_button.setBounds(260,220,100,30);
+        login_button.setBounds(140,260,100,30);
+        register_button.setBounds(260,260,100,30);
         
 
         login_register.setBounds(190,20,100,30);
 
 
+        login_window.add(role);
         login_window.add(user_id);
         login_window.add(password);
+        login_window.add(role_select);
         login_window.add(user_id_input);
         login_window.add(password_input);
         login_window.add(login_button);
@@ -72,7 +79,7 @@ public class LoginForm extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent ae) {
-        String option = user_id_input.getItemAt(user_id_input.getSelectedIndex()); 
+        String option = role_select.getItemAt(role_select.getSelectedIndex()); 
         String Password = password_input.getText();
 
         if(ae.getSource() == login_button)

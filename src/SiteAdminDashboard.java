@@ -43,19 +43,19 @@ public class SiteAdminDashboard extends JFrame implements ActionListener{
 		
 		btnPendingOrders = new JButton("Pending Orders");
 		btnPendingOrders.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnPendingOrders.setBounds(0, 0, 128, 29);
+		btnPendingOrders.setBounds(0, 0, 125, 29);
 		btnPendingOrders.addActionListener(this);
 		panel_buttons.add(btnPendingOrders);
 		
 		btnOrderHistory = new JButton("Order History");
 		btnOrderHistory.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnOrderHistory.setBounds(130, 0, 128, 29);
+		btnOrderHistory.setBounds(127, 0, 125, 29);
 		btnOrderHistory.addActionListener(this);
 		panel_buttons.add(btnOrderHistory);
 		
 		btnNewOrders = new JButton("New Order");
 		btnNewOrders.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewOrders.setBounds(260, 0, 128, 29);
+		btnNewOrders.setBounds(254, 0, 125, 29);
 		btnNewOrders.addActionListener(this);
 		panel_buttons.add(btnNewOrders);
 	}
