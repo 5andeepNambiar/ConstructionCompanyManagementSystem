@@ -1,16 +1,21 @@
+package src;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.lang.Exception;
 
+
+
 public class SiteAdminDashboard extends JFrame implements ActionListener{
 
 	JPanel SiteAdmin_window,panel_logout_welcome,panel_buttons;
-	JLabel lblWelcome;
+	JLabel lblWelcome,image_label;
 	JButton btnLogout,btnPendingOrders,btnOrderHistory,btnNewOrders;
+
 
 	SiteAdminDashboard() 
 	{
+
 		setTitle("Construction Company Management System - Site_Admin Dashboard");
 		setLocationRelativeTo(null);
         setResizable(false);
@@ -19,10 +24,16 @@ public class SiteAdminDashboard extends JFrame implements ActionListener{
 		SiteAdmin_window = new JPanel();
 		this.getContentPane().add(SiteAdmin_window);
 		SiteAdmin_window.setLayout(null);
+
+		image_label = new JLabel("");
+        image_label.setIcon(new ImageIcon(this.getClass().getResource("assets/siteadmin.jpg")));
+        image_label.setLayout(null);
+        image_label.setBounds(2, 35, 500, 400);
+        SiteAdmin_window.add(image_label);
 		
 		panel_logout_welcome = new JPanel();
 		panel_logout_welcome.setBounds(0, 0, 500, 35);
-		panel_logout_welcome.setBackground(new Color(244, 164, 96));
+		panel_logout_welcome.setBackground(new Color(0,0,0));
 		SiteAdmin_window.add(panel_logout_welcome);
 		panel_logout_welcome.setLayout(null);
 		
@@ -33,6 +44,7 @@ public class SiteAdminDashboard extends JFrame implements ActionListener{
 
 		lblWelcome = new JLabel("Welcome, Site Admin");
 		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblWelcome.setForeground(new Color(250,235,215));
 		lblWelcome.setBounds(150, 7, 180, 25);
 		panel_logout_welcome.add(lblWelcome);
 		
@@ -45,19 +57,21 @@ public class SiteAdminDashboard extends JFrame implements ActionListener{
 		btnPendingOrders.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnPendingOrders.setBounds(0, 0, 125, 29);
 		btnPendingOrders.addActionListener(this);
-		panel_buttons.add(btnPendingOrders);
+		image_label.add(btnPendingOrders);
 		
 		btnOrderHistory = new JButton("Order History");
 		btnOrderHistory.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnOrderHistory.setBounds(127, 0, 125, 29);
 		btnOrderHistory.addActionListener(this);
-		panel_buttons.add(btnOrderHistory);
+		image_label.add(btnOrderHistory);
 		
 		btnNewOrders = new JButton("New Order");
 		btnNewOrders.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewOrders.setBounds(254, 0, 125, 29);
 		btnNewOrders.addActionListener(this);
-		panel_buttons.add(btnNewOrders);
+		image_label.add(btnNewOrders);
+
+
 	}
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource()==btnPendingOrders)
@@ -85,5 +99,4 @@ public class SiteAdminDashboard extends JFrame implements ActionListener{
 		}
 		
 	}
-
 }

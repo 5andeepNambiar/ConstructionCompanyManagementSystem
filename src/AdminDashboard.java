@@ -1,14 +1,17 @@
+package src;
 import javax.swing.*;
 import java.awt.event.*;
 import java.lang.Exception;
-
 
 public class AdminDashboard extends JFrame implements ActionListener{
 
 	JPanel Admin_window;
 	JButton btnApplication,btnClient,btnBuildings,btnSite,btnSupplier,btnMaterials,btnInventory,btnLogout;
+	JLabel image_label;
 
-	AdminDashboard() {
+
+	AdminDashboard() 
+	{
 		setTitle("Construction Company Management System - Admin Dashboard");
 		setLocationRelativeTo(null);
         setResizable(false);
@@ -18,59 +21,51 @@ public class AdminDashboard extends JFrame implements ActionListener{
 		this.getContentPane().add(Admin_window);
 		Admin_window.setLayout(null);
 		
-		// try
-		// {
-
-		// 	JLabel show_image = new JLabel("");
-		// 	show_image.setIcon(new ImageIcon(AdminDashboard.class.getResource("/assets/image.jpeg")));
-		// 	show_image.setBounds(0, 0, 200, 400);
-		// 	Admin_window.add(show_image);
-		// } catch (Exception ae)
-		// {
-		// 	ae.printStackTrace();
-		// }
-
-		
+		image_label = new JLabel("");
+        image_label.setIcon(new ImageIcon(this.getClass().getResource("assets/admin.jpg")));
+        image_label.setLayout(null);
+        image_label.setBounds(2, 0, 847, 400);
+        Admin_window.add(image_label);
 
 		btnApplication = new JButton("Application");
 		btnApplication.addActionListener(this);
 		btnApplication.setBounds(0, 0, 104, 26);
-		Admin_window.add(btnApplication);
+		image_label.add(btnApplication);
 		
 		btnClient = new JButton("Client");
 		btnClient.addActionListener(this);
 		btnClient.setBounds(104, 0, 104, 26);
-		Admin_window.add(btnClient);
+		image_label.add(btnClient);
 		
 		btnBuildings = new JButton("Buildings");
 		btnBuildings.addActionListener(this);
 		btnBuildings.setBounds(208, 0, 104, 26);
-		Admin_window.add(btnBuildings);
+		image_label.add(btnBuildings);
 		
 		btnSite = new JButton("Site");
 		btnSite.addActionListener(this);
 		btnSite.setBounds(312, 0, 104, 26);
-		Admin_window.add(btnSite);
+		image_label.add(btnSite);
 		
 		btnMaterials = new JButton("Materials");
 		btnMaterials.addActionListener(this);
 		btnMaterials.setBounds(416, 0, 104, 26);
-		Admin_window.add(btnMaterials);
+		image_label.add(btnMaterials);
 		
 		btnSupplier = new JButton("Supplier");
 		btnSupplier.addActionListener(this);
 		btnSupplier.setBounds(520, 0, 104, 26);
-		Admin_window.add(btnSupplier);
+		image_label.add(btnSupplier);
 		
 		btnInventory = new JButton("Inventory");
 		btnInventory.addActionListener(this);
 		btnInventory.setBounds(624, 0, 104, 26);
-		Admin_window.add(btnInventory);
+		image_label.add(btnInventory);
 
 		btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(this);
 		btnLogout.setBounds(728, 0, 104, 26);
-		Admin_window.add(btnLogout);
+		image_label.add(btnLogout);
 
 		add(Admin_window);
 	
@@ -111,7 +106,7 @@ public class AdminDashboard extends JFrame implements ActionListener{
             this.dispose();
             try {
                 LoginForm login = new LoginForm();
-                login.setSize(500, 400);
+                login.setSize(500, 590);
                 login.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
