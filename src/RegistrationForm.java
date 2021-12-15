@@ -214,66 +214,6 @@ public class RegistrationForm extends JFrame implements ActionListener{
             {
                 JOptionPane.showMessageDialog(null, "Could not register user !");
             }
-
-            // try 
-            // {
-            //     String query = "select * from User_auth where Username = ?";
-            //     PreparedStatement pst = con.prepareStatement(query);
-            //     pst.setString(1, Username);
-            //     ResultSet rs = pst.executeQuery();
-            //     if (rs.next()) {
-            //         JOptionPane.showMessageDialog(null, "Username already exists");
-            //         return;
-            //     }
-            //     query = "insert into User_auth(Username,First_Name,Last_Name,Email,Password,Mobile_No,City,State,Pincode) values('" + Username + "','" + First_Name + "','" + Last_Name + "','" 
-            //             + Email + "','" + Password + "','" + Mobile_No + "','" + City + "','" + State + "','" + Pincode + "')";
-            //     con.createStatement().executeUpdate(query);
-            //     JOptionPane.showMessageDialog(null, "Sign Up Successful");
-            // } 
-            // catch (SQLException e) 
-            // {
-            //     e.printStackTrace();
-            //     CreateTable createUserTable = new CreateTable(con);
-            //     createUserTable.createTable();
-            //     JOptionPane.showMessageDialog(null, "Table Created. Try Again");
-
-            // } catch (Exception e) {
-            //     JOptionPane.showMessageDialog(null, "User already exists");
-            // }
-
-            // if(option.equals("Admin"))
-            // {
-            //         JOptionPane.showMessageDialog(null,"Login Successful");
-            //         AdminDashboard ad = new AdminDashboard(con);
-            //         ad.setVisible(true);
-            //         this.setVisible(false);
-                
-            // }
-            // else if(option.equals("SiteAdmin"))
-            // {
-            //         JOptionPane.showMessageDialog(null,"Login Successful");
-            //         SiteAdminDashboard sad = new SiteAdminDashboard(con);
-            //         sad.setVisible(true);
-            //         this.setVisible(false);
-            // }
-            // else if(option.equals("Supplier"))
-            // {
-            //         JOptionPane.showMessageDialog(null,"Login Successful");
-            //         SupplierDashboard sd = new SupplierDashboard(con);
-            //         sd.setVisible(true);
-            //         this.setVisible(false);
-            // }
-            // else if(option.equals("Customer"))
-            // {
-            //         JOptionPane.showMessageDialog(null,"Login Successful");
-            //         ClientDashboard cd = new ClientDashboard(con);
-            //         cd.setVisible(true);
-            //         this.setVisible(false);
-            // }
-            // else
-            // {
-            //     JOptionPane.showMessageDialog(null,"Invalid User");
-            // }
         }
 
         else if(ae.getSource()==login_button)
