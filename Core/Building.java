@@ -9,11 +9,11 @@ import src.driver;
 
 public class Building extends driver 
 {
-	int BuildingId; 
-	String BuildingName, BuildingType, SiteName, SiteLocation, OwnerName, Username;
-	int SiteId, ClientId;
-	Date ConstructionYear;
-	long Cost;
+	public int BuildingId; 
+	public String BuildingName, BuildingType, SiteName, SiteLocation, OwnerName, Username;
+	public int SiteId, ClientId;
+	public Date ConstructionYear;
+	public long Cost;
 	
 	public Building() {} 
 	
@@ -99,7 +99,7 @@ public class Building extends driver
 			stmt.setDate(4, this.ConstructionYear);
 			stmt.setLong(5, this.Cost);
 			stmt.setInt(6, this.SiteId);
-			stmt.setInt(7, this.ClientId);
+			stmt.setString(7, this.Username);
 			stmt.setInt(8, this.BuildingId);
 					
 			if (stmt.executeUpdate() > 0)
@@ -119,7 +119,7 @@ public class Building extends driver
 	public ArrayList<Building> getBuildingsOwned (String Username){
 		ArrayList<Building> buildings = new ArrayList<Building>();
 		try {
-			PreparedStatement stmt = Query("SELECT * FROM Building B JOIN Site S ON S.SiteId = B.SiteId WHERE B.ClientId = ?");
+			PreparedStatement stmt = Query("SELECT * FROM Building B JOIN Site S ON S.SiteId = B.SiteId WHERE B.Username = ?");
 			stmt.setString(1, Username);
 			ResultSet rs = stmt.executeQuery(); 
 			while(rs.next())

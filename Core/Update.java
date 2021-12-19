@@ -7,9 +7,9 @@ import java.lang.Exception;
 import javax.swing.JOptionPane;
 
 public class Update extends driver {
-	public String Username,Password;
-	public String FirstName,LastName,Email,City,State;;	
-	public int Pincode,MobileNo;
+	String Username,Password;
+    String FirstName,LastName,Email,City,State;;	
+	int Pincode,MobileNo;
 
 	
 	public Update()

@@ -3,7 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.Exception;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
+import Core.Building;
 
 public class ClientDashboard extends JFrame implements ActionListener {
 
@@ -12,7 +16,8 @@ public class ClientDashboard extends JFrame implements ActionListener {
 	String Username;
 	JLabel lblWelcome,image_label,logo_label;
 	JButton btnLogout, btnMyBuildings,btnUpdate;
-	
+	JTable table;
+
 
 	ClientDashboard(String Username)
 	{
@@ -56,7 +61,7 @@ public class ClientDashboard extends JFrame implements ActionListener {
 		panel_logout_welcome.add(lblWelcome);
 
 		panel_buttons = new JPanel();
-		panel_buttons.setBounds(0, 39, 509, 138);
+		panel_buttons.setBounds(0, 39, 700, 500);
 		Client_window.add(panel_buttons);
 		panel_buttons.setLayout(null);
 		
@@ -74,14 +79,31 @@ public class ClientDashboard extends JFrame implements ActionListener {
 		btnUpdate.addActionListener(this);
 		image_label.add(btnUpdate);
 
-
 	}
+
+	
 
 	public void actionPerformed(ActionEvent ae) {
 
 		if(ae.getSource()==btnMyBuildings)
 		{
-			// Display building details
+			DefaultTableModel model = new DefaultTableModel(); 
+			JTable table = new JTable(model); 
+			JScrollPane scroller = new JScrollPane(table);
+			scroller.setBounds(0, 40, 700, 500);
+			
+				   String [] col= {"Building ID","Building Name", "Building Type" , "Year of Construction" , "Site Name", "Location" };
+				   model.setColumnIdentifiers(col);
+				   table.setModel(model);
+				   image_label.add(scroller);
+
+				   ArrayList<Building> buildings = new Building().getBuildingsOwned(this.Username);
+				   for(Building building : buildings)
+				   {
+				   		Object[] objs = {building.BuildingId, building.BuildingName, building.BuildingType, building.ConstructionYear, building.SiteName, building.SiteLocation};
+				   		model.addRow(objs);
+				   }
+				   panel_buttons.add(scroller);
 		} 
 
 		else if(ae.getSource()==btnLogout)
@@ -102,4 +124,10 @@ public class ClientDashboard extends JFrame implements ActionListener {
 			update.setVisible(true);
 		}
 	}
-}
+
+	public static void main(String[] args)
+	{
+		ClientDashboard client = new ClientDashboard("");
+		client.setVisible(true);
+	}
+} 

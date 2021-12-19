@@ -25,12 +25,12 @@ public class Client extends driver {
 			while (rs.next())
 			{
 				this.Username = Username;
-				this.FirstName = rs.getString("FirstName");
-				this.LastName = rs.getString("LastName");
+				this.FirstName = rs.getString("First_Name");
+				this.LastName = rs.getString("Last_Name");
                 this.email = rs.getString("Email");
                 this.City = rs.getString("City");
                 this.State = rs.getString("State");
-                this.MobileNo = rs.getInt("MobileNo");
+                this.MobileNo = rs.getInt("Mobile_No");
                 this.Pincode = rs.getInt("Pincode");
 			}
 		} catch (Exception e)
