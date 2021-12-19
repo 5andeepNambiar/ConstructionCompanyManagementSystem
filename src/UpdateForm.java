@@ -174,7 +174,6 @@ public class UpdateForm extends JFrame implements ActionListener {
                 {
                     try 
                     {
-
                         password_input.setText("");
                         first_name_input.setText("");
                         last_name_input.setText("");

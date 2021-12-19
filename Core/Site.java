@@ -11,7 +11,7 @@ public class Site extends driver {
 	
 	public Site()
 	{
-		this.SiteId = 0;
+		this.SiteId = 1;
 	}
 	
 	public Site(int SiteId)
@@ -74,7 +74,7 @@ public class Site extends driver {
 	
 	public int getSiteId(String SiteName)
 	{
-		int SiteId = 0; 
+		int SiteId = 1; 
 		try {
 			
 			PreparedStatement stmt = Query("SELECT SiteId FROM Site WHERE Sitename = ?");

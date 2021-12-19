@@ -3,7 +3,7 @@ package Core;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.sql.Date;
+
 
 import src.driver;
 
@@ -12,7 +12,7 @@ public class Building extends driver
 	public int BuildingId; 
 	public String BuildingName, BuildingType, SiteName, SiteLocation, OwnerName, Username;
 	public int SiteId, ClientId;
-	public Date ConstructionYear;
+	public String ConstructionYear;
 	public long Cost;
 	
 	public Building() {} 
@@ -30,7 +30,7 @@ public class Building extends driver
 				this.BuildingId = rs.getInt("BuildingId");
 				this.BuildingName = rs.getString("BuildingName");
 				this.BuildingType = rs.getString("Buildingtype");
-				this.ConstructionYear = rs.getDate("ConstructionYear");
+				this.ConstructionYear = rs.getString("ConstructionYear");
 				this.Username = rs.getString("Username");
 				this.Cost =  rs.getLong("Cost");
 				this.SiteName = rs.getString("SiteName");
@@ -49,7 +49,7 @@ public class Building extends driver
 	}
 	
 	
-	public Building(int Bid, String Bname, String BType, Date CYear, String SiteName, long Cost , String Username)
+	public Building(int Bid, String Bname, String BType, String CYear, String SiteName, long Cost , String Username)
 	{
 		
 		this.BuildingId = Bid;
@@ -80,7 +80,7 @@ public class Building extends driver
 			ResultSet rs = stmt.executeQuery(); 
 			while(rs.next())
 			{
-				 buildings.add(new Building(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getDate(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("Username")));
+				 buildings.add(new Building(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("Username")));
 			}
 		} catch (Exception e)
 		{
@@ -92,15 +92,14 @@ public class Building extends driver
 	public boolean updateDetails()
 	{
 		try {
-			PreparedStatement stmt = Query("UPDATE Building SET BuildingId = ?, BuildingName = ?, BuildingType = ?, YearOfConstruction = ?, cost = ?,SiteId = ?, Username = ? WHERE BuildingId = ?");
-			stmt.setInt(1, this.BuildingId);
-			stmt.setString(2, this.BuildingName);
-			stmt.setString(3, this.BuildingType);
-			stmt.setDate(4, this.ConstructionYear);
-			stmt.setLong(5, this.Cost);
-			stmt.setInt(6, this.SiteId);
-			stmt.setString(7, this.Username);
-			stmt.setInt(8, this.BuildingId);
+			PreparedStatement stmt = Query("UPDATE Building SET BuildingName = ?, BuildingType = ?, YearOfConstruction = ?, cost = ?, SiteId = ?, Username = ? WHERE BuildingId = ?");
+			stmt.setString(1, this.BuildingName);
+			stmt.setString(2, this.BuildingType);
+			stmt.setString(3, this.ConstructionYear);
+			stmt.setLong(4, this.Cost);
+			stmt.setInt(5, this.SiteId);
+			stmt.setString(6, this.Username);
+			stmt.setInt(7, this.BuildingId);
 					
 			if (stmt.executeUpdate() > 0)
 			{
@@ -125,7 +124,7 @@ public class Building extends driver
 			while(rs.next())
 			{
 				 buildings.add(
-						 new Building(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getDate(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("UserName")));
+						 new Building(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("UserName")));
 			}
 		} catch (Exception e)
 		{
@@ -133,5 +132,49 @@ public class Building extends driver
 		} 
 		return buildings;
 	}
+
+	public boolean deleteDetails()
+	{
+		try {
+			PreparedStatement stmt = Query("DELETE FROM Building WHERE BuildingId = ?");
+			stmt.setInt(1, this.BuildingId);
+			if (stmt.executeUpdate() > 0)
+			{
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		} 
+		return false;
+	}
+
+	public boolean addDetails()
+	{
+		try {
+			PreparedStatement stmt = Query("INSERT INTO Building (BuildingName, BuildingType, YearOfConstruction, cost, SiteId, Username) VALUES (?,?,?,?,?,?)");
+			stmt.setString(1, this.BuildingName);
+			stmt.setString(2, this.BuildingType);
+			stmt.setString(3, this.ConstructionYear);
+			stmt.setLong(4, this.Cost);
+			stmt.setInt(5, this.SiteId);
+			stmt.setString(6, this.Username);
+			
+			if (stmt.executeUpdate() > 0)
+			{
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		} 
+		return false;
+	}
+
+
 	
 }
