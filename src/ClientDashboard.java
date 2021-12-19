@@ -15,7 +15,7 @@ public class ClientDashboard extends JFrame implements ActionListener {
 	JPanel Client_window,panel_logout_welcome,panel_buttons;
 	String Username;
 	JLabel lblWelcome,image_label,logo_label;
-	JButton btnLogout, btnMyBuildings,btnUpdate;
+	JButton btnLogout, btnMyBuildings,btnUpdate_CustDetails,btnUpdate_BuildDetails;
 	JTable table;
 
 
@@ -72,12 +72,19 @@ public class ClientDashboard extends JFrame implements ActionListener {
 		btnMyBuildings.addActionListener(this);
 		image_label.add(btnMyBuildings);
 
-		btnUpdate = new JButton("Update");
-		btnUpdate.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnUpdate.setBounds(115, 3, 100, 30);
-		btnUpdate.setForeground(new Color(0,0,0));
-		btnUpdate.addActionListener(this);
-		image_label.add(btnUpdate);
+		btnUpdate_CustDetails = new JButton("Update Customer Details");
+		btnUpdate_CustDetails.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnUpdate_CustDetails.setBounds(115, 3, 100, 30);
+		btnUpdate_CustDetails.setForeground(new Color(0,0,0));
+		btnUpdate_CustDetails.addActionListener(this);
+		image_label.add(btnUpdate_CustDetails);
+
+		btnUpdate_BuildDetails = new JButton("Update Building Details");
+		btnUpdate_BuildDetails.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnUpdate_BuildDetails.setBounds(216, 3, 100, 30);
+		btnUpdate_BuildDetails.setForeground(new Color(0,0,0));
+		btnUpdate_BuildDetails.addActionListener(this);
+		image_label.add(btnUpdate_BuildDetails);
 
 	}
 
@@ -118,16 +125,16 @@ public class ClientDashboard extends JFrame implements ActionListener {
             }
 		}
 
-		else if (ae.getSource()==btnUpdate)
+		else if (ae.getSource()==btnUpdate_CustDetails)
 		{
 			UpdateForm update = new UpdateForm();
 			update.setVisible(true);
 		}
-	}
 
-	public static void main(String[] args)
-	{
-		ClientDashboard client = new ClientDashboard("");
-		client.setVisible(true);
+		else if (ae.getSource()==btnUpdate_BuildDetails)
+		{
+			BuildingForm b_update = new BuildingForm();
+			b_update.setVisible(true);
+		}
 	}
 } 

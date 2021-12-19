@@ -154,13 +154,15 @@ public class Building extends driver
 	public boolean addDetails()
 	{
 		try {
-			PreparedStatement stmt = Query("INSERT INTO Building (BuildingName, BuildingType, YearOfConstruction, cost, SiteId, Username) VALUES (?,?,?,?,?,?)");
-			stmt.setString(1, this.BuildingName);
-			stmt.setString(2, this.BuildingType);
-			stmt.setString(3, this.ConstructionYear);
-			stmt.setLong(4, this.Cost);
-			stmt.setInt(5, this.SiteId);
-			stmt.setString(6, this.Username);
+			PreparedStatement stmt = Query("INSERT INTO Building (BuildingId, BuildingName, BuildingType, YearOfConstruction, cost, SiteId, Username) VALUES (?,?,?,?,?,?,?)");
+			stmt.setInt(1, this.BuildingId);
+			stmt.setString(2, this.BuildingName);
+			stmt.setString(3, this.BuildingType);
+			stmt.setString(4, this.ConstructionYear);
+			stmt.setLong(5, this.Cost);
+			stmt.setInt(6, this.SiteId);
+			stmt.setString(7, this.Username);
+
 			
 			if (stmt.executeUpdate() > 0)
 			{
