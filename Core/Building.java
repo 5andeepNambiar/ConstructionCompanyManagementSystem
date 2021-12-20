@@ -40,7 +40,6 @@ public class Building extends driver
 				
 				Client c = new Client(this.Username);
 				this.OwnerName = c.FirstName + " " + c.LastName; 
-				this.SiteLocation = s.getSiteLocation(this.SiteName);
 			}
 		} catch (Exception e)
 		{
@@ -59,14 +58,7 @@ public class Building extends driver
 		this.Username = Username;
 		this.Cost = Cost;
 		this.SiteName = SiteName;
-		
-		Site s = new Site();
-		this.SiteId = s.getSiteId(SiteName);
-		
-		Client c = new Client(this.Username);
-		this.OwnerName = c.FirstName + " " + c.LastName; 
-		
-		this.SiteLocation = s.getSiteLocation(this.SiteName);
+
 	}
 	
 
@@ -123,8 +115,7 @@ public class Building extends driver
 			ResultSet rs = stmt.executeQuery(); 
 			while(rs.next())
 			{
-				 buildings.add(
-						 new Building(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("UserName")));
+				 buildings.add(new Building(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString("sitename"),rs.getLong("cost"),rs.getString("UserName")));
 			}
 		} catch (Exception e)
 		{
@@ -177,6 +168,4 @@ public class Building extends driver
 		return false;
 	}
 
-
-	
 }

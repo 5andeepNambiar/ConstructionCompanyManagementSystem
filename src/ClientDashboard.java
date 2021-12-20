@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 import Core.Building;
+import Core.Site;
 
 public class ClientDashboard extends JFrame implements ActionListener {
 
@@ -99,7 +100,7 @@ public class ClientDashboard extends JFrame implements ActionListener {
 			JScrollPane scroller = new JScrollPane(table);
 			scroller.setBounds(0, 40, 700, 500);
 			
-				   String [] col= {"Building ID","Building Name", "Building Type" , "Year of Construction" , "Site Name", "Location" };
+				   String [] col= {"Building ID","Building Name", "Building Type" , "Year of Construction" , "Site Name", "Location"};
 				   model.setColumnIdentifiers(col);
 				   table.setModel(model);
 				   image_label.add(scroller);
@@ -108,6 +109,13 @@ public class ClientDashboard extends JFrame implements ActionListener {
 				   for(Building building : buildings)
 				   {
 				   		Object[] objs = {building.BuildingId, building.BuildingName, building.BuildingType, building.ConstructionYear, building.SiteName, building.SiteLocation};
+				   		model.addRow(objs);
+				   }
+
+				   ArrayList<Site> locations = new Site().getSiteLocation(this.Username);
+				   for (Site site : locations)
+				   {
+				   		Object[] objs = {site.SiteLocation};
 				   		model.addRow(objs);
 				   }
 				   panel_buttons.add(scroller);

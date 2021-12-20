@@ -1,10 +1,23 @@
 package src;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Core.Building;
+import Core.Site;
 
 public class BuildingForm extends JFrame implements ActionListener{
 
@@ -140,7 +153,7 @@ public class BuildingForm extends JFrame implements ActionListener{
             String Year = txtYear.getText();
             long Cost = Integer.parseInt(txtCost.getText());
             String BuildingType = cmbBuildingType.getSelectedItem().toString();
-            // String Location = txtLocation.getText();
+            String Location = txtLocation.getText();
             String SiteName = txtSiteName.getText();
             String Username = txtUsername.getText();
 
@@ -151,6 +164,15 @@ public class BuildingForm extends JFrame implements ActionListener{
             {
                 if(b.addDetails())
                 {
+                    Site s = new Site(); 
+                    ArrayList<String> location = s.getLocations();
+                    if (location.size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "No sites exist.");
+                        dispose(); 
+                    }
+                    else
+                    
                     JOptionPane.showMessageDialog(null,"Building Added Successfully");
                 }
                 else
@@ -164,6 +186,7 @@ public class BuildingForm extends JFrame implements ActionListener{
                 if(b.updateDetails())
                 {
                     JOptionPane.showMessageDialog(null,"Updated Successfully");
+                    this.dispose();
                 }
                 else
                 {

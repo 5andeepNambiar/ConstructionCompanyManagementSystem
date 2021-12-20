@@ -2,6 +2,7 @@ package Core;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import src.driver;
 
@@ -82,7 +83,7 @@ public class Site extends driver {
 			ResultSet rs = stmt.executeQuery(); 
 			while(rs.next())
 			{
-				System.out.print(rs.getInt(1));
+
 				return rs.getInt(1);  
 				
 			}
@@ -93,23 +94,37 @@ public class Site extends driver {
 		return SiteId; 
 	}
 	
-	public String getSiteLocation(String SiteName)
+	public ArrayList<String> getLocations()
 	{
-		String SiteLocation = ""; 
+		ArrayList<String> location =  new ArrayList<String>();
 		try {
 			
-			PreparedStatement stmt = Query("SELECT SiteLocation FROM Site WHERE Sitename = ?");
-			stmt.setString(1, SiteName);
+			ResultSet rs = Query("SELECT Distinct siteLocation from Site;").executeQuery(); 
+			while(rs.next())
+			{
+				location.add(rs.getString(1)); 
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		} 
+		return location;
+	}
+
+	public ArrayList<Site> getSiteLocation (String Username){
+		ArrayList<Site> location = new ArrayList<Site>();
+		try {
+			PreparedStatement stmt = Query("SELECT SiteLocation FROM Site S JOIN Building B ON B.SiteId = S.SiteId WHERE B.Username = ?");
+			stmt.setString(1, Username);
 			ResultSet rs = stmt.executeQuery(); 
 			while(rs.next())
 			{
-				return rs.getString(1);  
 				
 			}
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-		return SiteLocation; 
+		} 
+		return location;
 	}
 }

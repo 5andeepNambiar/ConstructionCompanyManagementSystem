@@ -125,8 +125,7 @@ public class UpdateForm extends JFrame implements ActionListener {
         btnUpdate.setBounds(352,300,100,30);
 
         update_label.setBounds(300,3,100,35);
-
-
+        
         image_label.add(role);
         image_label.add(first_name);
         image_label.add(last_name);
@@ -163,6 +162,7 @@ public class UpdateForm extends JFrame implements ActionListener {
                 if (cl.update(option))
                 {
                     JOptionPane.showMessageDialog(null, "Updated Successfully!");
+                    this.dispose();
                 } 
                 else 
                 {
